@@ -10,6 +10,10 @@ export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILIURE = 'FETCH_FAILIURE';
 
+export const FETCH_BLOG_REQUEST = 'FETCH_BLOG_REQUEST';
+export const FETCH_BLOG_SUCCESS = 'FETCH_BLOG_SUCCESS';
+export const FETCH_BLOG_FAILIURE = 'FETCH_BLOG_FAILIURE';
+
 const results = axios.create({
   baseURL: 'https://advblogv2.firebaseio.com/',
 });
@@ -26,12 +30,14 @@ export const addItem = (item) => (dispatch) => {
   return results
     .post('/response.json', item)
     .then(({ data }) => {
-      const newItem = [
+      return [
         {
           ...item,
           id: data.name,
         },
       ];
+    })
+    .then((newItem) => {
       dispatch({ type: ADD_ITEM_SUCCESS, payload: newItem });
     })
     .catch((err) => {
@@ -52,20 +58,47 @@ export const getData = () => (dispatch) => {
   return results
     .get('/response.json')
     .then(({ data }) => {
-      // console.log(data);
       const fetchedData = [];
-
       for (let key of Object.keys(data)) {
         fetchedData.unshift({
           ...data[key],
           id: key,
         });
       }
-
+      return fetchedData;
+    })
+    .then((fetchedData) => {
       dispatch({ type: FETCH_SUCCESS, payload: fetchedData });
     })
+
     .catch((err) => {
       console.log(err);
       dispatch({ type: FETCH_FAILIURE });
     });
 };
+
+// export const getBlogPost = (id) => (dispatch) => {
+//   dispatch({ type: FETCH_BLOG_REQUEST });
+//   return results
+//     .get('/response.json')
+//     .then(({ data }) => {
+//       const fetchedData = [];
+
+//       console.log(data);
+//       // for (let key of Object.keys(data)) {
+//       //   fetchedData.unshift({
+//       //     ...data[key],
+//       //     id: key,
+//       //   });
+//       // }
+//       return fetchedData;
+//     })
+//     .then((fetchedData) => {
+//       dispatch({ type: FETCH_BLOG_SUCCESS, payload: fetchedData });
+//     })
+
+//     .catch((err) => {
+//       console.log(err);
+//       dispatch({ type: FETCH_BLOG_FAILIURE });
+//     });
+// };

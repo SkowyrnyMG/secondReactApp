@@ -5,6 +5,7 @@ import MainTemplate from 'template/MainTemplate';
 import routes from 'routes';
 import HomePage from 'view/HomePage';
 import BlogPage from 'view/BlogPage';
+import PostPage from 'view/PostPage';
 import ContactPage from 'view/ContactPage';
 import LoginPage from 'view/LoginPage';
 import store from 'store';
@@ -15,7 +16,8 @@ const Root = () => (
       <Router>
         <Switch>
           <Route exact path={routes.home} component={HomePage} />
-          <Route path={routes.blog} component={BlogPage} />
+          <Route exact path={routes.blog} component={BlogPage} />
+          <Route path={routes.post} component={PostPage} />
           <Route path={routes.contact} component={ContactPage} />
           <Route path={routes.login} component={LoginPage} />
         </Switch>
