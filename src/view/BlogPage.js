@@ -11,18 +11,13 @@ class BlogPage extends Component {
     fetchData();
   }
 
-  handlePostClick = () => {
-    const { posts } = this.props;
-    console.log(posts);
-  };
-
   render() {
     const { posts } = this.props;
     return (
       <>
         <BlogTemplate>
           {posts.map(({ id, link, title }) => (
-            <PostPreview key={id} id={id} link={link} title={title} handleClick={this.handlePostClick} />
+            <PostPreview key={id} id={id} link={link} title={title} />
           ))}
         </BlogTemplate>
       </>

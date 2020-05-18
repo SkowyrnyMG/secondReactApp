@@ -14,7 +14,7 @@ export const FETCH_BLOG_REQUEST = 'FETCH_BLOG_REQUEST';
 export const FETCH_BLOG_SUCCESS = 'FETCH_BLOG_SUCCESS';
 export const FETCH_BLOG_FAILIURE = 'FETCH_BLOG_FAILIURE';
 
-const results = axios.create({
+export const results = axios.create({
   baseURL: 'https://advblogv2.firebaseio.com/',
 });
 

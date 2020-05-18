@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import UserPageTemplate from 'template/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
@@ -60,5 +61,11 @@ const PostTemplate = ({ title, link, content }) => (
     </StyledWrapper>
   </UserPageTemplate>
 );
+
+PostTemplate.propTypes = {
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
 
 export default PostTemplate;

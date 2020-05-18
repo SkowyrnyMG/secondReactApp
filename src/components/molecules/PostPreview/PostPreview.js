@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 const appear = keyframes`
@@ -26,13 +25,11 @@ const StyledWrapper = styled.div`
   align-items: center;
   animation: ${appear} 1s forwards ease-out;
   cursor: pointer;
-  transition: box-shadow .25s;
+  transition: box-shadow 0.25s;
 
   :hover {
-    /* background-color: ${({ theme }) => theme.color.primaryColorLight}; */
-    box-shadow: 0 0rem 3rem -1rem hsla(0, 0%, 0%, .6);
+    box-shadow: 0 0rem 3rem -1rem hsla(0, 0%, 0%, 0.6);
   }
-
 `;
 
 const StyledImage = styled.img`
@@ -49,7 +46,7 @@ class PostPreview extends Component {
   };
 
   render() {
-    const { handleClick, link, title, id } = this.props;
+    const { link, title, id } = this.props;
     const { redirect } = this.state;
 
     if (redirect) {
@@ -71,8 +68,4 @@ PostPreview.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  post: 1,
-});
-
-export default connect(mapStateToProps)(PostPreview);
+export default PostPreview;
