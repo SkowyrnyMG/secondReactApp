@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import UserPageTemplate from 'template/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
+import Button from 'components/atoms/Button/Button';
+import { Link } from 'react-router-dom';
+import routes from 'routes';
 
 const StyledWrapper = styled.div`
   display: grid;
-  grid-template-rows: 15rem 0.75fr;
+  grid-template-rows: 15rem 1fr 15rem;
   grid-template-columns: 0.25fr repeat(4, 1fr) 0.25fr;
   justify-items: center;
   align-items: center;
@@ -40,12 +43,20 @@ const StyledContent = styled.p`
   }
 `;
 
+const StyledButton = styled(Button)`
+  grid-column: 3 / 5;
+  grid-row: 3 / -1;
+`;
+
 const PostTemplate = ({ title, link, content }) => (
   <UserPageTemplate>
     <StyledWrapper>
       <StyledHeading>{title}</StyledHeading>
       <StyledImg img={link} />
       <StyledContent>{content}</StyledContent>
+      <StyledButton as={Link} to={routes.blog} onwhitespace='true'>
+        Go back
+      </StyledButton>
     </StyledWrapper>
   </UserPageTemplate>
 );

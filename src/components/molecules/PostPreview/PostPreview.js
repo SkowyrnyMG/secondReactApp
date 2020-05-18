@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 const appear = keyframes`
     0% {
@@ -38,12 +39,31 @@ const StyledImage = styled.img`
   height: 20rem;
 `;
 
-const PostPreview = ({ handleClick, id, link, title }) => (
-  <StyledWrapper onClick={handleClick}>
-    <StyledImage src={link} alt='Artilce' />
-    <h2>{title}</h2>
-  </StyledWrapper>
-);
+class PostPreview extends Component {
+  state = {
+    redirect: false,
+  };
+
+  handleOnClick = () => {
+    this.setState({ redirect: true });
+  };
+
+  render() {
+    const { handleClick, link, title, id } = this.props;
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to={`/blog/${id}`} />;
+    }
+
+    return (
+      <StyledWrapper onClick={() => this.handleOnClick()}>
+        <StyledImage src={link} alt='Artilce' />
+        <h2>{title}</h2>
+      </StyledWrapper>
+    );
+  }
+}
 
 PostPreview.propTypes = {
   id: PropTypes.string.isRequired,

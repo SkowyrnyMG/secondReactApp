@@ -7,7 +7,7 @@ import Heading from 'components/atoms/Heading/Heading';
 
 const StyledForm = styled.form`
   margin: 5rem;
-  padding: 5rem 10rem 6rem 10rem;
+  /* padding: 5rem 10rem 6rem 10rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
