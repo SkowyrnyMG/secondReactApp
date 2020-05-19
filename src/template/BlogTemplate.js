@@ -85,7 +85,9 @@ BlogTemplate.propTypes = {
   togglePanel: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ blog }) => {
+const mapStateToProps = (state) => {
+  console.log(state);
+  const { blog } = state;
   const { isPostPanelOpen } = blog;
   return { isPostPanelOpen };
 };

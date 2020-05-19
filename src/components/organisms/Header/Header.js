@@ -1,6 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import routes from 'routes';
+import { connect } from 'react-redux';
 import MainNav from 'components/organisms/Header/MainNav';
 import LogoImage from 'assets/logo.svg';
 import Button from 'components/atoms/Button/Button';
@@ -29,16 +31,41 @@ const StyledImage = styled.div`
 const StyledButton = styled(Button)`
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
+
+   {
+    ${({ theme, red }) =>
+      red &&
+      css`
+        color: red;
+        font-weight: ${theme.fontWeight.bold};
+        border-color: ${theme.color.error};
+
+        :hover {
+          color: ${theme.color.primaryColorText};
+          background-color: ${theme.color.error};
+        }
+      `}
+  }
 `;
 
-const Header = () => (
+const Header = ({ currentUser }) => (
   <StyledWrapper>
-    <StyledImage as={Link} to='/' />
+    <StyledImage as={Link} to={routes.home} />
     <MainNav />
-    <StyledButton as={Link} to='/login'>
-      start bloging!
-    </StyledButton>
+    {currentUser !== null ? (
+      <StyledButton red='true' as={Link} to={routes.login}>
+        Logout
+      </StyledButton>
+    ) : (
+      <StyledButton as={Link} to={routes.login}>
+        start bloging!
+      </StyledButton>
+    )}
   </StyledWrapper>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.auth.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);

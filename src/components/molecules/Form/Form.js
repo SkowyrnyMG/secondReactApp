@@ -60,7 +60,7 @@ class Form extends Component {
           onChange={(e) => this.handleChange(e)}
           value={content}
         />
-        <Button onwhitespace onClick={() => this.formReset()}>
+        <Button atwhitespace='true' onClick={() => this.formReset()}>
           {buttonText}
         </Button>
       </StyledForm>

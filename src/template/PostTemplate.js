@@ -55,7 +55,7 @@ const PostTemplate = ({ title, link, content }) => (
       <StyledHeading>{title}</StyledHeading>
       <StyledImg img={link} />
       <StyledContent>{content}</StyledContent>
-      <StyledButton as={Link} to={routes.blog} onwhitespace='true'>
+      <StyledButton as={Link} to={routes.blog} atwhitespace='true'>
         Go back
       </StyledButton>
     </StyledWrapper>

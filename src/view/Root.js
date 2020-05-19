@@ -8,6 +8,7 @@ import BlogPage from 'view/BlogPage';
 import PostPage from 'view/PostPage';
 import ContactPage from 'view/ContactPage';
 import LoginPage from 'view/LoginPage';
+import RegisterPage from 'view/RegisterPage';
 import store from 'store';
 
 const Root = () => (
@@ -20,6 +21,7 @@ const Root = () => (
           <Route path={routes.post} component={PostPage} />
           <Route path={routes.contact} component={ContactPage} />
           <Route path={routes.login} component={LoginPage} />
+          <Route path={routes.register} component={RegisterPage} />
         </Switch>
       </Router>
     </MainTemplate>

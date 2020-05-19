@@ -12,6 +12,7 @@ export default {
     facebook: '#0676E8',
     github: '#afaaf0',
     linkedin: '#0077B5',
+    error: '#dc3545',
   },
   fontSize: {
     xs: '0.8rem',

@@ -4,4 +4,5 @@ export default {
   post: '/blog/:id',
   contact: '/contact',
   login: '/login',
+  register: '/register',
 };

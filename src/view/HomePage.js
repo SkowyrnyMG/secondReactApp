@@ -78,7 +78,7 @@ const HomePage = () => (
             write some IRL, bigger accounting webapp and after that I hope that you will be 100% convinced to give me a
             try in your Company!
           </StyledParagraph>
-          <Button as={Link} to='/blog' onwhitespace>
+          <Button as={Link} to='/blog' atwhitespace='true'>
             Go to blog!
           </Button>
         </StyledInfoContent>
