@@ -69,7 +69,7 @@ export const signIn = (credentials) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: LOGIN_FAILIURE, payload: err });
+      dispatch({ type: LOGIN_FAILIURE });
     });
 };
 

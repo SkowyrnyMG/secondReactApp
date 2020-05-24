@@ -57,8 +57,14 @@ class AuthTemplate extends Component {
       <StyledWrapper>
         <StyledForm action='submit' onSubmit={(e) => handleSubmitFn(e, this.state)}>
           <Heading>{isRegister ? 'Create new account' : 'Log into existing account'}</Heading>
-          <Input id='userEmail' placeholder='email..' onChange={(e) => this.handleChange(e)} />
-          <Input id='password' placeholder='password..' type='password' onChange={(e) => this.handleChange(e)} />
+          <Input id='userEmail' placeholder='email..' type='email' onChange={(e) => this.handleChange(e)} required />
+          <Input
+            id='password'
+            placeholder='password..'
+            type='password'
+            onChange={(e) => this.handleChange(e)}
+            required
+          />
           <StyledParagraph>{errorMessage}</StyledParagraph>
           <Button atwhitespace='true'>{isRegister ? 'Register' : 'Sign in'}</Button>
           {isRegister ? (

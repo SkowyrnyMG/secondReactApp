@@ -3,21 +3,22 @@ import styled, { keyframes } from 'styled-components';
 
 const LoadingAnimation = keyframes`
   from {
-    opacity: 0;
-  }
-
-  50% {
     opacity: 1;
   }
 
-  to {
+  50% {
     opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 
 `;
 
 const StyledAnimation = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.headingBig};
+  position: ${({ contain }) => (contain ? 'relative' : 'fixed')};
+  font-size: ${({ theme }) => theme.fontSize.heading};
   color: ${({ theme }) => theme.color.primaryColorText};
   animation: ${LoadingAnimation} 2s infinite linear;
 `;

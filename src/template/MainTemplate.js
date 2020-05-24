@@ -5,6 +5,7 @@ import GlobalStyles from 'theme/GlobalStyles';
 import theme from 'theme/theme';
 import { connect } from 'react-redux';
 import Loading from 'components/molecules/Loading/Loading';
+import { Helmet } from 'react-helmet';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -22,6 +23,12 @@ class MainTemplate extends Component {
     const { children, isLogged } = this.props;
     return (
       <ThemeProvider theme={theme}>
+        <Helmet>
+          <link
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300&display=swap'
+          />
+        </Helmet>
         <GlobalStyles />
         <StyledWrapper>{children}</StyledWrapper>
         {isLogged && <Loading />}
