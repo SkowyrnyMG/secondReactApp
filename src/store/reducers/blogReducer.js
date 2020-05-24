@@ -1,8 +1,17 @@
-import { TOGGLE_MODAL, FETCH_SUCCESS, ADD_ITEM_SUCCESS } from 'store/actions/blogActions';
+import {
+  TOGGLE_MODAL,
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
+  ADD_ITEM_SUCCESS,
+  FETCH_COMMENTS_REQUEST,
+  FETCH_COMMENTS_SUCCESS,
+} from 'store/actions/actionsConstants';
 
 const initState = {
   isPostPanelOpen: false,
   posts: [],
+  comments: null,
+  isLoading: false,
 };
 
 const blogReducer = (state = initState, action) => {
@@ -19,11 +28,30 @@ const blogReducer = (state = initState, action) => {
         isPostPanelOpen: !state.isPostPanelOpen,
       };
 
+    case FETCH_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case FETCH_SUCCESS:
-      // console.log({ state });
       return {
         ...state,
         posts: [...action.payload],
+        isLoading: false,
+      };
+
+    case FETCH_COMMENTS_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case FETCH_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        comments: [...action.payload],
+        isLoading: false,
       };
 
     default:

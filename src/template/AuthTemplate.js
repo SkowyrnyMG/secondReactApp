@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import routes from 'routes';
 import Input from 'components/molecules/Input/Input';
@@ -50,7 +50,8 @@ class AuthTemplate extends Component {
   };
 
   render() {
-    const { handleSubmitFn, isRegister, errorMessage } = this.props;
+    const { handleSubmitFn, isRegister, errorMessage, redirect, redirectRoute } = this.props;
+    if (redirect) return <Redirect to={redirectRoute} />;
 
     return (
       <StyledWrapper>
@@ -80,6 +81,8 @@ AuthTemplate.propTypes = {
   handleSubmitFn: PropTypes.func.isRequired,
   isRegister: PropTypes.bool,
   errorMessage: PropTypes.string,
+  redirect: PropTypes.bool.isRequired,
+  redirectRoute: PropTypes.string.isRequired,
 };
 
 AuthTemplate.defaultProps = {
@@ -89,6 +92,7 @@ AuthTemplate.defaultProps = {
 
 const mapStateToProps = (state) => ({
   errorMessage: state.auth.errorMessage,
+  redirect: state.auth.redirectLogin,
 });
 
 export default connect(mapStateToProps)(AuthTemplate);

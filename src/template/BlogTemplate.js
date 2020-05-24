@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import UserPageTemplate from 'template/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import AddPostPanel from 'components/organisms/AddPostPanel/AddPostPanel';
+import Loading from 'components/molecules/Loading/Loading';
 import { connect } from 'react-redux';
 import { openCloseModal } from 'store/actions/blogActions';
 
@@ -64,16 +65,21 @@ const StyledPanelButton = styled.button`
   }
 `;
 
-const BlogTemplate = ({ children, isPostPanelOpen, togglePanel }) => {
+const BlogTemplate = ({ children, isPostPanelOpen, togglePanel, userType, isLoading }) => {
   return (
     <UserPageTemplate>
       <>
+        {isLoading && <Loading />}
         <StyledWrapper>
           <Heading big>blog news from my life</Heading>
           <StyledPostsWrapper>{children}</StyledPostsWrapper>
         </StyledWrapper>
-        <StyledPanelButton isPanelOpen={isPostPanelOpen} onClick={() => togglePanel()} />
-        <AddPostPanel isPanelOpen={isPostPanelOpen} />
+        {userType === 'admin' ? (
+          <>
+            <StyledPanelButton isPanelOpen={isPostPanelOpen} onClick={() => togglePanel()} />
+            <AddPostPanel isPanelOpen={isPostPanelOpen} />
+          </>
+        ) : null}
       </>
     </UserPageTemplate>
   );
@@ -83,13 +89,19 @@ BlogTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
   isPostPanelOpen: PropTypes.bool.isRequired,
   togglePanel: PropTypes.func.isRequired,
+  userType: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
+};
+
+BlogTemplate.defaultProps = {
+  userType: null,
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   const { blog } = state;
-  const { isPostPanelOpen } = blog;
-  return { isPostPanelOpen };
+  const { isPostPanelOpen, isLoading } = blog;
+  const { userType } = state.auth.currentUser;
+  return { isPostPanelOpen, userType, isLoading };
 };
 
 const mapDispatchToProps = (dispatch) => ({

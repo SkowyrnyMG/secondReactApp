@@ -5,4 +5,5 @@ export default {
   contact: '/contact',
   login: '/login',
   register: '/register',
+  registerConfirm: '/register/confirm',
 };

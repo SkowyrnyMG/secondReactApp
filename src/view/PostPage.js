@@ -25,7 +25,9 @@ class PostPage extends Component {
 
   render() {
     const { title, link, content } = this.state;
-    return <PostTemplate title={title} link={link} content={content} />;
+    const { location } = this.props;
+    const postId = location.pathname.substring(6);
+    return <PostTemplate title={title} link={link} content={content} id={postId} />;
   }
 }
 

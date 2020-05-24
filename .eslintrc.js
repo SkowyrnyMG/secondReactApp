@@ -44,5 +44,9 @@ module.exports = {
     ],
     'arrow-body-style': 0,
     'import/prefer-default-export': 0,
+    'object-curly-newline': 0,
+    'react/jsx-indent': 0,
+    'no-restricted-syntax': 0,
+    'operator-linebreak': 0,
   },
 };

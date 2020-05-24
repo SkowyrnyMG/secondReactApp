@@ -10,6 +10,7 @@ import ContactPage from 'view/ContactPage';
 import LoginPage from 'view/LoginPage';
 import RegisterPage from 'view/RegisterPage';
 import store from 'store';
+import RegisterConfirm from 'view/RegisterConfirm';
 
 const Root = () => (
   <Provider store={store}>
@@ -21,7 +22,8 @@ const Root = () => (
           <Route path={routes.post} component={PostPage} />
           <Route path={routes.contact} component={ContactPage} />
           <Route path={routes.login} component={LoginPage} />
-          <Route path={routes.register} component={RegisterPage} />
+          <Route exact path={routes.register} component={RegisterPage} />
+          <Route path={routes.registerConfirm} component={RegisterConfirm} />
         </Switch>
       </Router>
     </MainTemplate>

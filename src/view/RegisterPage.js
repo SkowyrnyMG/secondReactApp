@@ -1,17 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import AuthTemplate from 'template/AuthTemplate';
+import routes from 'routes';
+import { register as registerAction } from 'store/actions/authActions';
 
-const RegisterPage = () => {
-  const handleSumbit = (e) => {
+const RegisterPage = ({ register }) => {
+  const handleSumbit = (e, cred) => {
     e.preventDefault();
-    console.log('register work');
+    register(cred);
   };
 
   return (
     <>
-      <AuthTemplate handleSubmitFn={handleSumbit} isRegister />
+      <AuthTemplate handleSubmitFn={handleSumbit} isRegister redirectRoute={routes.registerConfirm} />
     </>
   );
 };
 
-export default RegisterPage;
+RegisterPage.propTypes = {
+  register: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  register: (cred) => dispatch(registerAction(cred)),
+});
+
+export default connect(null, mapDispatchToProps)(RegisterPage);

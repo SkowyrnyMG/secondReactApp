@@ -46,11 +46,6 @@ const MainNav = ({ type }) => (
         Blog
       </StyledNavLink>
     </StyledLink>
-    <StyledLink>
-      <StyledNavLink type={type} to='/contact' activeClassName='navLinkActive'>
-        Contact
-      </StyledNavLink>
-    </StyledLink>
   </StyledNav>
 );
 

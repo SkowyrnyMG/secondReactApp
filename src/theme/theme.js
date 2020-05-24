@@ -3,6 +3,7 @@ export default {
     primaryColorDark: '#303F9F',
     primaryColor: '#3F51B5',
     primaryColorLight: '#C5CAE9',
+    primaryColorLightest: 'hsla(232, 45%, 84%, .4)',
     primaryColorText: '#FFFFFF',
     accentColor: '#448AFF',
     primaryTextColor: '#212121',

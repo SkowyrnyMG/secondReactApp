@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import AuthTemplate from 'template/AuthTemplate';
 import { connect } from 'react-redux';
 import { signIn as signInAction } from 'store/actions/authActions';
+import routes from 'routes';
 
 const LoginPage = ({ signIn }) => {
   const handleSubmit = (e, cred) => {
     e.preventDefault();
 
-    console.log('Login works');
     signIn(cred);
   };
 
   return (
     <>
-      <AuthTemplate handleSubmitFn={handleSubmit} />
+      <AuthTemplate handleSubmitFn={handleSubmit} redirectRoute={routes.home} />
     </>
   );
 };

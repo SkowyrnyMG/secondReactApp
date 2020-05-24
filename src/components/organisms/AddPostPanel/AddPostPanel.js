@@ -26,9 +26,7 @@ const StyledWrapper = styled.div`
 const AddPostPanel = ({ isPanelOpen, addItem, togglePanel }) => {
   const handleSubmit = (e, val) => {
     e.preventDefault();
-    // console.log(e.target.input.value); tutajKoniec
     addItem(val);
-    // [...e.target.children].filter((child) => child.tagName.includes('TEXTAREA') || child.tagName.includes('INPUT'));
     togglePanel();
   };
 

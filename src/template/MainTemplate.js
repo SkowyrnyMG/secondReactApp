@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import GlobalStyles from 'theme/GlobalStyles';
 import theme from 'theme/theme';
 import { connect } from 'react-redux';
+import Loading from 'components/molecules/Loading/Loading';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -18,11 +19,12 @@ class MainTemplate extends Component {
   state = {};
 
   render() {
-    const { children } = this.props;
+    const { children, isLogged } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <StyledWrapper>{children}</StyledWrapper>
+        {isLogged && <Loading />}
       </ThemeProvider>
     );
   }
@@ -30,10 +32,12 @@ class MainTemplate extends Component {
 
 MainTemplate.propTypes = {
   children: PropTypes.element.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  isLogged: state.auth.isLogged,
 });
 
 export default connect(mapStateToProps)(MainTemplate);
