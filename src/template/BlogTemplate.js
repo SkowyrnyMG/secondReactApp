@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import UserPageTemplate from 'template/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import AddPostPanel from 'components/organisms/AddPostPanel/AddPostPanel';
-import Loading from 'components/molecules/Loading/Loading';
 import { connect } from 'react-redux';
 import { openCloseModal } from 'store/actions/blogActions';
 
@@ -65,11 +64,10 @@ const StyledPanelButton = styled.button`
   }
 `;
 
-const BlogTemplate = ({ children, isPostPanelOpen, togglePanel, userType, isLoading }) => {
+const BlogTemplate = ({ children, isPostPanelOpen, togglePanel, userType }) => {
   return (
     <UserPageTemplate>
       <>
-        {isLoading && <Loading />}
         <StyledWrapper>
           <Heading big>blog news from my life</Heading>
           <StyledPostsWrapper>{children}</StyledPostsWrapper>
@@ -90,7 +88,6 @@ BlogTemplate.propTypes = {
   isPostPanelOpen: PropTypes.bool.isRequired,
   togglePanel: PropTypes.func.isRequired,
   userType: PropTypes.string,
-  isLoading: PropTypes.bool.isRequired,
 };
 
 BlogTemplate.defaultProps = {
